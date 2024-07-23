@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Borda do jogo */
+.game-board {
+    width: 80%;
+    height: 500px;
+    border: 1px solid #333;
+    margin: 0 auto;
+    position: relative; /**/
+    overflow: hidden; /*Esconde tudo o que ultrapassa a borda*/
+}
+
+.pipe {
+    position: absolute;  /*Para que uma imagem não interfira nas outras*/
+    bottom: 0;
+    width: 80px;
+    animation: pipe-animation 2s infinite linear; /*Inserção da animação pipe-animation no elemento pipe - 2 segundos - em loop infinito - com velocidade linear (constante)*/
+}
+
+/*Animação do obstáculo (pipe)*/
+@keyframes pipe-animation {
+    /* Início */
+    from {
+        right: -80px; /*Posição inicial ; -80px permite que o objeto inicie fora da tela (e entre gradualmente ao longo da animação)*/
+    }
+
+    /* Fim */
+    to {
+        right: 100% /*Posição final*/
+    }
+}
