@@ -4,32 +4,88 @@
     box-sizing: border-box;
 }
 
+body {
+    background: linear-gradient(#240f03, #7e370e);
+}
+
 /* Borda do jogo */
 .game-board {
-    width: 80%;
+    width: 100%;
     height: 500px;
-    border: 1px solid #333;
     margin: 0 auto;
     position: relative; /**/
     overflow: hidden; /*Esconde tudo o que ultrapassa a borda*/
+    /* Cenário */
+    border-bottom: 15px solid rgb(35, 160, 35); /*Grama*/
+    background: linear-gradient(#87ceeb, #e0f6ff); /*Céu*/
 }
 
+.clouds {
+    margin: 10px;
+    width: 500px;
+    position: absolute;
+    animation: clouds-animation 20s infinite linear;
+}
+/* Animação das nuvens */
+@keyframes clouds-animation {
+    /* Início */
+    from {
+        right: -550px; /*Posição inicial ; -550px permite que o objeto inicie fora da tela (e entre gradualmente ao longo da animação)*/
+    }
+    /* Fim */
+    to {
+        right: 100%; /*Posição final (sai para fora da tela)*/
+    }
+}
+
+/* Obstáculo (Pipe) */
 .pipe {
     position: absolute;  /*Para que uma imagem não interfira nas outras*/
     bottom: 0;
     width: 80px;
-    animation: pipe-animation 2s infinite linear; /*Inserção da animação pipe-animation no elemento pipe - 2 segundos - em loop infinito - com velocidade linear (constante)*/
+    animation: pipe-animation 1.5s infinite linear; /*Inserção da animação pipe-animation no elemento pipe - 2 segundos - em loop infinito - com velocidade linear (constante)*/
 }
-
 /*Animação do obstáculo (pipe)*/
 @keyframes pipe-animation {
     /* Início */
     from {
-        right: -80px; /*Posição inicial ; -80px permite que o objeto inicie fora da tela (e entre gradualmente ao longo da animação)*/
+        right: -80px; /*Posição inicial ; -80px -> inicia fora da tela*/
     }
 
     /* Fim */
     to {
         right: 100% /*Posição final*/
+    }
+}
+
+/* Mario */
+.mario {
+    position: absolute; /*Para não haver interfirência entre as imagens*/
+    bottom: 0;
+    width: 150px;
+}
+/*Classe para inserção da animação do salto*/
+.mario-jump { 
+    animation: mario-jump 600ms infinite ease-out; /*500ms - loop infinito - subida instantânea com queda suave */
+}
+/* Animação do salto do Mario */
+@keyframes mario-jump {
+    /* Início - 0% da animação*/
+    0% {
+        bottom: 0; /*Posição inicial - Chão*/
+    }
+    /* Meio - 40% a 60% da animação (para aumentar o tempo no pico)*/
+    40% {
+        bottom: 190px; /*Posição intermediária - Pico do salto*/
+    }
+    50% {
+        bottom: 190px; /*Posição intermediária - Pico do salto*/
+    }
+    60% {
+        bottom: 190px; /*Posição intermediária - Pico do salto*/
+    }
+    /* Final - 100% da animação*/
+    100% {
+        bottom: 0;
     }
 }
